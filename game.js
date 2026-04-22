@@ -5,7 +5,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx    = canvas.getContext("2d");
 const W = canvas.width  = 800;
-const H = canvas.height = 520;
+const H = canvas.height = 590;
 
 // ─── WORLD & BOSS DATA ───────────────────────────────────────
 const WORLDS = [
@@ -30,8 +30,26 @@ const WORLDS = [
   {
     id: 3, name: "Volcano Court", emoji: "🌋",
     bg: "#2d0000", floor: "#7b241c",
-    trophiesNeeded: 6, trophiesToNext: Infinity, pointsToWin: 11,
+    trophiesNeeded: 6, trophiesToNext: 10, pointsToWin: 11,
     boss: { name: "Lava King", emoji: "👹", color: "#e74c3c", size: 76, shotChance: 0.78, taunt: "You'll burn for this!" },
+  },
+  {
+    id: 4, name: "Arctic Court", emoji: "❄️",
+    bg: "#0a1628", floor: "#a8d8ea",
+    trophiesNeeded: 10, trophiesToNext: 15, pointsToWin: 13,
+    boss: { name: "Frost Giant", emoji: "🧊", color: "#74b9ff", size: 84, shotChance: 0.83, taunt: "You'll freeze before you score!" },
+  },
+  {
+    id: 5, name: "Haunted Court", emoji: "👻",
+    bg: "#0d0015", floor: "#2d1b4e",
+    trophiesNeeded: 15, trophiesToNext: 21, pointsToWin: 15,
+    boss: { name: "Ghost Guard", emoji: "💀", color: "#a29bfe", size: 90, shotChance: 0.88, taunt: "No one escapes my court!" },
+  },
+  {
+    id: 6, name: "Dragon's Lair", emoji: "🐉",
+    bg: "#1a0000", floor: "#4a0000",
+    trophiesNeeded: 21, trophiesToNext: Infinity, pointsToWin: 17,
+    boss: { name: "Dragon King", emoji: "🔥", color: "#ff7675", size: 96, shotChance: 0.93, taunt: "NONE shall defeat the Dragon King!" },
   },
 ];
 
@@ -64,10 +82,20 @@ const HOOP_L    = { cx: 155, ry: 195, half: 22 };  // left  hoop  – boss  scor
 const PLAYER_X  = 130;
 const BOSS_X    = 670;
 
-// World-map card layout
-const CARD_W = 172, CARD_H = 205, CARD_GAP = 12;
-const CARDS_X = (W - (CARD_W * 4 + CARD_GAP * 3)) / 2;
-const CARDS_Y = 150;
+// World-map card layout  (2 rows: 4 cards on top, 3 on bottom)
+const CARD_W = 160, CARD_H = 178, CARD_GAP = 12, CARD_ROW_GAP = 14;
+const CARDS_Y = 122;
+const ROW1_X = (W - (CARD_W * 4 + CARD_GAP * 3)) / 2;
+const ROW2_X = (W - (CARD_W * 3 + CARD_GAP * 2)) / 2;
+
+function cardPos(i) {
+  const row = i < 4 ? 0 : 1;
+  const col = i < 4 ? i : i - 4;
+  return {
+    x: (row === 0 ? ROW1_X : ROW2_X) + col * (CARD_W + CARD_GAP),
+    y: CARDS_Y + row * (CARD_H + CARD_ROW_GAP),
+  };
+}
 
 // ─── INPUT ───────────────────────────────────────────────────
 let mouse = { x: 0, y: 0 };
@@ -86,9 +114,9 @@ window.addEventListener("keydown", e => {
 function handleClick() {
   if (screen === "worldMap") {
     WORLDS.forEach((w, i) => {
-      const cx = CARDS_X + i * (CARD_W + CARD_GAP);
+      const { x: cx, y: cy } = cardPos(i);
       if (mouse.x >= cx && mouse.x <= cx + CARD_W &&
-          mouse.y >= CARDS_Y && mouse.y <= CARDS_Y + CARD_H &&
+          mouse.y >= cy && mouse.y <= cy + CARD_H &&
           trophies >= w.trophiesNeeded) {
         startMatch(w);
       }
@@ -228,21 +256,20 @@ function drawWorldMap() {
 
   // Title
   ctx.fillStyle = "#f1c40f";
-  ctx.font = "bold 34px 'Courier New'";
+  ctx.font = "bold 30px 'Courier New'";
   ctx.textAlign = "center";
-  ctx.fillText("🏀 BASKETBALL BOSS BATTLE 🏆", W / 2, 58);
+  ctx.fillText("🏀 BASKETBALL BOSS BATTLE 🏆", W / 2, 48);
 
   ctx.fillStyle = "#ecf0f1";
-  ctx.font = "20px 'Courier New'";
-  ctx.fillText("Trophies: " + trophies + " 🏆", W / 2, 98);
+  ctx.font = "17px 'Courier New'";
+  ctx.fillText("Trophies: " + trophies + " 🏆", W / 2, 80);
 
   ctx.fillStyle = "#888";
-  ctx.font = "13px 'Courier New'";
-  ctx.fillText("Click a world to play  •  beat the boss to earn trophies", W / 2, 128);
+  ctx.font = "12px 'Courier New'";
+  ctx.fillText("Click a world to play  •  beat the boss to earn trophies", W / 2, 106);
 
   WORLDS.forEach((w, i) => {
-    const cx = CARDS_X + i * (CARD_W + CARD_GAP);
-    const cy = CARDS_Y;
+    const { x: cx, y: cy } = cardPos(i);
     const locked  = trophies < w.trophiesNeeded;
     const hovered = !locked && mouse.x >= cx && mouse.x <= cx + CARD_W
                             && mouse.y >= cy && mouse.y <= cy + CARD_H;
@@ -255,29 +282,29 @@ function drawWorldMap() {
 
     ctx.globalAlpha = locked ? 0.35 : 1;
 
-    ctx.font = "38px serif";
+    ctx.font = "34px serif";
     ctx.textAlign = "center";
-    ctx.fillText(w.emoji, cx + CARD_W / 2, cy + 52);
+    ctx.fillText(w.emoji, cx + CARD_W / 2, cy + 46);
 
     ctx.fillStyle = "#ecf0f1";
-    ctx.font = "bold 13px 'Courier New'";
-    ctx.fillText(w.name, cx + CARD_W / 2, cy + 80);
+    ctx.font = "bold 12px 'Courier New'";
+    ctx.fillText(w.name, cx + CARD_W / 2, cy + 70);
 
     // Boss icon (colored circle + emoji)
     ctx.fillStyle = w.boss.color;
     ctx.beginPath();
-    ctx.arc(cx + CARD_W / 2, cy + 130, 28, 0, Math.PI * 2);
+    ctx.arc(cx + CARD_W / 2, cy + 112, 24, 0, Math.PI * 2);
     ctx.fill();
-    ctx.font = "26px serif";
-    ctx.fillText(w.boss.emoji, cx + CARD_W / 2, cy + 140);
+    ctx.font = "22px serif";
+    ctx.fillText(w.boss.emoji, cx + CARD_W / 2, cy + 120);
 
     ctx.fillStyle = w.boss.color;
-    ctx.font = "11px 'Courier New'";
-    ctx.fillText(w.boss.name, cx + CARD_W / 2, cy + 170);
+    ctx.font = "10px 'Courier New'";
+    ctx.fillText(w.boss.name, cx + CARD_W / 2, cy + 148);
 
     ctx.fillStyle = locked ? "#aaa" : "#2ecc71";
-    ctx.font = "11px 'Courier New'";
-    ctx.fillText(locked ? "🔒 Need " + w.trophiesNeeded + " 🏆" : "▶ PLAY", cx + CARD_W / 2, cy + 192);
+    ctx.font = "10px 'Courier New'";
+    ctx.fillText(locked ? "🔒 Need " + w.trophiesNeeded + " 🏆" : "▶ PLAY", cx + CARD_W / 2, cy + 166);
 
     ctx.globalAlpha = 1;
   });
