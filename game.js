@@ -12,56 +12,101 @@ const WORLDS = [
   {
     id: 0, name: "The Gym", emoji: "🏀",
     bg: "#1a3a5c", floor: "#b5651d",
-    trophiesNeeded: 0, trophiesToNext: 1, pointsToWin: 5, trophyReward: 10,
-    boss: { name: "Coach Brick", emoji: "😤", color: "#c0392b", size: 52, shotChance: 0.38, taunt: "Is that all you got?" },
+    trophiesNeeded: 0, pointsToWin: 5, trophyReward: 10,
+    bosses: [
+      { name: "Bench Warmer",  emoji: "😅", color: "#7f8c8d", size: 40, shotChance: 0.24, taunt: "I just warmed up!" },
+      { name: "Coach Brick",   emoji: "😤", color: "#c0392b", size: 48, shotChance: 0.32, taunt: "Is that all you got?" },
+      { name: "Gym Teacher",   emoji: "😠", color: "#8e44ad", size: 54, shotChance: 0.38, taunt: "You'll run laps for this!" },
+      { name: "Team Captain",  emoji: "💪", color: "#2980b9", size: 58, shotChance: 0.43, taunt: "I never lose on my court!" },
+      { name: "All-Star Alex", emoji: "🌟", color: "#f39c12", size: 64, shotChance: 0.48, taunt: "You're not ready for me!" },
+    ],
   },
   {
     id: 1, name: "City Rooftop", emoji: "🏙️",
     bg: "#1c2833", floor: "#717d7e",
-    trophiesNeeded: 1000, trophiesToNext: 5000, pointsToWin: 7, trophyReward: 1,
-    boss: { name: "Rooftop Rex", emoji: "😠", color: "#d35400", size: 60, shotChance: 0.52, taunt: "Get off my court!" },
+    trophiesNeeded: 1000, pointsToWin: 7, trophyReward: 1,
+    bosses: [
+      { name: "Street Kid",    emoji: "😏", color: "#16a085", size: 48, shotChance: 0.40, taunt: "Beginner's luck won't save you!" },
+      { name: "Rooftop Rex",   emoji: "😠", color: "#d35400", size: 56, shotChance: 0.47, taunt: "Get off my court!" },
+      { name: "Concrete King", emoji: "👊", color: "#c0392b", size: 62, shotChance: 0.52, taunt: "This is MY block!" },
+      { name: "Urban Legend",  emoji: "🔥", color: "#e74c3c", size: 68, shotChance: 0.56, taunt: "They don't call me a legend for nothing!" },
+      { name: "City Champion", emoji: "🏆", color: "#f1c40f", size: 74, shotChance: 0.61, taunt: "No one takes my title!" },
+    ],
   },
   {
     id: 2, name: "Outer Space", emoji: "🚀",
     bg: "#050510", floor: "#2c2c5a",
-    trophiesNeeded: 5000, trophiesToNext: 15000, pointsToWin: 9, trophyReward: 1,
-    boss: { name: "Alien Slam", emoji: "👽", color: "#1abc9c", size: 68, shotChance: 0.65, taunt: "Earthlings can't ball!" },
+    trophiesNeeded: 5000, pointsToWin: 9, trophyReward: 1,
+    bosses: [
+      { name: "Space Cadet",    emoji: "🛸", color: "#00b894", size: 52, shotChance: 0.52, taunt: "I trained for 1000 light years!" },
+      { name: "Alien Slam",     emoji: "👽", color: "#1abc9c", size: 60, shotChance: 0.57, taunt: "Earthlings can't ball!" },
+      { name: "Meteor Mike",    emoji: "☄️", color: "#6c5ce7", size: 66, shotChance: 0.62, taunt: "I'll hit you like a meteor!" },
+      { name: "Galaxy Guard",   emoji: "🌌", color: "#a29bfe", size: 72, shotChance: 0.67, taunt: "This galaxy belongs to ME!" },
+      { name: "Cosmic Emperor", emoji: "👾", color: "#fd79a8", size: 78, shotChance: 0.72, taunt: "Bow before the Cosmic Emperor!" },
+    ],
   },
   {
     id: 3, name: "Volcano Court", emoji: "🌋",
     bg: "#2d0000", floor: "#7b241c",
-    trophiesNeeded: 15000, trophiesToNext: 20000, pointsToWin: 11, trophyReward: 1,
-    boss: { name: "Lava King", emoji: "👹", color: "#e74c3c", size: 76, shotChance: 0.78, taunt: "You'll burn for this!" },
+    trophiesNeeded: 15000, pointsToWin: 11, trophyReward: 1,
+    bosses: [
+      { name: "Lava Rookie",   emoji: "🌡️", color: "#e17055", size: 58, shotChance: 0.64, taunt: "Feel the heat!" },
+      { name: "Lava King",     emoji: "👹", color: "#e74c3c", size: 66, shotChance: 0.69, taunt: "You'll burn for this!" },
+      { name: "Magma Monster", emoji: "🔥", color: "#d63031", size: 74, shotChance: 0.73, taunt: "I AM the volcano!" },
+      { name: "Eruption Earl", emoji: "💥", color: "#ff7675", size: 80, shotChance: 0.77, taunt: "ERUPTION TIME!" },
+      { name: "Volcano Titan", emoji: "🌋", color: "#b71c1c", size: 88, shotChance: 0.82, taunt: "Nothing survives the Titan!" },
+    ],
   },
   {
     id: 4, name: "Arctic Court", emoji: "❄️",
     bg: "#0a1628", floor: "#a8d8ea",
-    trophiesNeeded: 20000, trophiesToNext: 50000, pointsToWin: 13, trophyReward: 1,
-    boss: { name: "Frost Giant", emoji: "🧊", color: "#74b9ff", size: 84, shotChance: 0.83, taunt: "You'll freeze before you score!" },
+    trophiesNeeded: 20000, pointsToWin: 13, trophyReward: 1,
+    bosses: [
+      { name: "Snow Bunny",    emoji: "🐰", color: "#dfe6e9", size: 58, shotChance: 0.72, taunt: "Don't let the ears fool you!" },
+      { name: "Frost Giant",   emoji: "🧊", color: "#74b9ff", size: 68, shotChance: 0.76, taunt: "You'll freeze before you score!" },
+      { name: "Blizzard Boss", emoji: "❄️", color: "#0984e3", size: 76, shotChance: 0.80, taunt: "I AM the blizzard!" },
+      { name: "Ice Queen",     emoji: "👑", color: "#81ecec", size: 84, shotChance: 0.84, taunt: "Kneel before the Ice Queen!" },
+      { name: "Arctic Titan",  emoji: "🏔️", color: "#b2bec3", size: 92, shotChance: 0.87, taunt: "I've never felt cold — or defeat!" },
+    ],
   },
   {
     id: 5, name: "Haunted Court", emoji: "👻",
     bg: "#0d0015", floor: "#2d1b4e",
-    trophiesNeeded: 50000, trophiesToNext: 100000, pointsToWin: 15, trophyReward: 1,
-    boss: { name: "Ghost Guard", emoji: "💀", color: "#a29bfe", size: 90, shotChance: 0.88, taunt: "No one escapes my court!" },
+    trophiesNeeded: 50000, pointsToWin: 15, trophyReward: 1,
+    bosses: [
+      { name: "Spooky Steve",      emoji: "👻", color: "#a29bfe", size: 62, shotChance: 0.80, taunt: "BOO! Did I scare your shot?" },
+      { name: "Ghost Guard",       emoji: "💀", color: "#6c5ce7", size: 70, shotChance: 0.83, taunt: "No one escapes my court!" },
+      { name: "Phantom Player",    emoji: "🎭", color: "#8e44ad", size: 78, shotChance: 0.86, taunt: "You can't stop what you can't see!" },
+      { name: "Shadow King",       emoji: "🌑", color: "#2c3e50", size: 86, shotChance: 0.89, taunt: "Darkness always wins!" },
+      { name: "Undead Champion",   emoji: "🧟", color: "#636e72", size: 94, shotChance: 0.91, taunt: "I've been winning since the 1300s!" },
+    ],
   },
   {
     id: 6, name: "Dragon's Lair", emoji: "🐉",
     bg: "#1a0000", floor: "#4a0000",
-    trophiesNeeded: 100000, trophiesToNext: Infinity, pointsToWin: 17, trophyReward: 1,
-    boss: { name: "Dragon King", emoji: "🔥", color: "#ff7675", size: 96, shotChance: 0.93, taunt: "NONE shall defeat the Dragon King!" },
+    trophiesNeeded: 100000, pointsToWin: 17, trophyReward: 1,
+    bosses: [
+      { name: "Dragon Hatchling", emoji: "🐣", color: "#fdcb6e", size: 56, shotChance: 0.85, taunt: "Don't underestimate baby dragons!" },
+      { name: "Fire Drake",       emoji: "🐲", color: "#e17055", size: 68, shotChance: 0.88, taunt: "I'll incinerate that ball!" },
+      { name: "Dragon Guard",     emoji: "🛡️", color: "#d63031", size: 78, shotChance: 0.90, taunt: "The lair is MINE to protect!" },
+      { name: "Dragon King",      emoji: "🔥", color: "#ff7675", size: 88, shotChance: 0.92, taunt: "NONE shall defeat the Dragon King!" },
+      { name: "THE MEGA DRAGON",  emoji: "🐉", color: "#e74c3c", size: 100, shotChance: 0.95, taunt: "I AM THE FINAL BOSS. PREPARE TO LOSE." },
+    ],
   },
 ];
 
 // ─── GAME STATE ──────────────────────────────────────────────
-let trophies   = 0;
-let screen     = "worldMap";   // "worldMap" | "match" | "matchEnd"
-let world      = null;
+let trophies    = 0;
+let screen      = "worldMap";  // "worldMap" | "match" | "matchEnd"
+let world       = null;
+let bossIndex   = 0;           // which of the 5 bosses we're on (0–4)
 let playerScore = 0;
 let bossScore   = 0;
 // turn: "player" | "animating" | "bossWait" | "ending"
-let turn       = "player";
-let matchWon   = false;
+let turn        = "player";
+let matchWon    = false;
+
+function currentBoss() { return world.bosses[bossIndex]; }
 
 // Shot meter
 let meter = { active: false, pos: 0, dir: 1, speed: 0.016 };
@@ -137,10 +182,11 @@ function handleClick() {
 
 // ─── MATCH LOGIC ─────────────────────────────────────────────
 function startMatch(w) {
-  world       = w;
-  playerScore = 0;
-  bossScore   = 0;
-  turn        = "player";
+  world        = w;
+  bossIndex    = 0;
+  playerScore  = 0;
+  bossScore    = 0;
+  turn         = "player";
   meter.active = false;
   ball.active  = false;
   popup.life   = 0;
@@ -159,7 +205,7 @@ function firePlayerShot() {
 }
 
 function bossTakesShot() {
-  const scored = Math.random() < world.boss.shotChance;
+  const scored = Math.random() < currentBoss().shotChance;
   launchBall(BOSS_X, FLOOR_Y - 30, HOOP_L, scored, false);
 }
 
@@ -188,20 +234,42 @@ function finishShot() {
     if (ball.scored) { playerScore++; showPopup("SWISH! +1", "#f1c40f"); }
     else              showPopup("Missed!", "#e74c3c");
   } else {
-    if (ball.scored) { bossScore++; showPopup(world.boss.name + " scores!", "#e74c3c"); }
+    if (ball.scored) { bossScore++; showPopup(currentBoss().name + " scores!", "#e74c3c"); }
     else              showPopup("Boss missed!", "#2ecc71");
   }
 
-  // Check for match end
-  if (playerScore >= world.pointsToWin || bossScore >= world.pointsToWin) {
-    matchWon = playerScore >= world.pointsToWin;
-    if (matchWon) trophies += world.trophyReward;
+  // Player won this boss fight
+  if (playerScore >= world.pointsToWin) {
+    turn = "ending";
+    if (bossIndex < world.bosses.length - 1) {
+      // More bosses to fight — advance after a short pause
+      showPopup("Boss " + (bossIndex + 1) + " down! Next up...", "#2ecc71");
+      setTimeout(() => {
+        bossIndex++;
+        playerScore  = 0;
+        bossScore    = 0;
+        turn         = "player";
+        meter.active = false;
+        ball.active  = false;
+      }, 2000);
+    } else {
+      // All 5 bosses beaten!
+      matchWon = true;
+      trophies += world.trophyReward;
+      setTimeout(() => { screen = "matchEnd"; }, 1600);
+    }
+    return;
+  }
+
+  // Boss won this fight — back to world map
+  if (bossScore >= world.pointsToWin) {
+    matchWon = false;
     turn = "ending";
     setTimeout(() => { screen = "matchEnd"; }, 1400);
     return;
   }
 
-  // Next turn
+  // Neither has won yet — next turn
   if (ball.byPlayer) {
     turn = "bossWait";
     bossWaitTimer = 80;
@@ -290,17 +358,22 @@ function drawWorldMap() {
     ctx.font = "bold 12px 'Courier New'";
     ctx.fillText(w.name, cx + CARD_W / 2, cy + 70);
 
-    // Boss icon (colored circle + emoji)
-    ctx.fillStyle = w.boss.color;
+    // Show the final (hardest) boss on the card
+    const finalBoss = w.bosses[w.bosses.length - 1];
+    ctx.fillStyle = finalBoss.color;
     ctx.beginPath();
-    ctx.arc(cx + CARD_W / 2, cy + 112, 24, 0, Math.PI * 2);
+    ctx.arc(cx + CARD_W / 2, cy + 108, 24, 0, Math.PI * 2);
     ctx.fill();
     ctx.font = "22px serif";
-    ctx.fillText(w.boss.emoji, cx + CARD_W / 2, cy + 120);
+    ctx.fillText(finalBoss.emoji, cx + CARD_W / 2, cy + 116);
 
-    ctx.fillStyle = w.boss.color;
+    ctx.fillStyle = finalBoss.color;
     ctx.font = "10px 'Courier New'";
-    ctx.fillText(w.boss.name, cx + CARD_W / 2, cy + 148);
+    ctx.fillText(finalBoss.name, cx + CARD_W / 2, cy + 143);
+
+    ctx.fillStyle = "#aaa";
+    ctx.font = "10px 'Courier New'";
+    ctx.fillText("5 bosses", cx + CARD_W / 2, cy + 156);
 
     ctx.fillStyle = locked ? "#aaa" : "#2ecc71";
     ctx.font = "10px 'Courier New'";
@@ -332,26 +405,29 @@ function drawMatch() {
 
   // Characters
   drawPlayer(PLAYER_X, FLOOR_Y);
-  drawBoss(BOSS_X, FLOOR_Y, w.boss);
+  drawBoss(BOSS_X, FLOOR_Y, currentBoss());
 
   // Scoreboard
   ctx.fillStyle = "rgba(0,0,0,0.55)";
-  rrect(W / 2 - 105, 8, 210, 54, 8); ctx.fill();
+  rrect(W / 2 - 105, 8, 210, 66, 8); ctx.fill();
   ctx.fillStyle = "#fff";
   ctx.font = "bold 26px 'Courier New'";
   ctx.textAlign = "center";
-  ctx.fillText(playerScore + "  —  " + bossScore, W / 2, 44);
+  ctx.fillText(playerScore + "  —  " + bossScore, W / 2, 40);
   ctx.fillStyle = "#888";
   ctx.font = "11px 'Courier New'";
-  ctx.fillText("first to " + w.pointsToWin + " wins", W / 2, 58);
+  ctx.fillText("first to " + w.pointsToWin + " wins", W / 2, 55);
+  ctx.fillStyle = "#f1c40f";
+  ctx.font = "bold 11px 'Courier New'";
+  ctx.fillText("Boss " + (bossIndex + 1) + " / " + w.bosses.length, W / 2, 70);
 
   // Turn label (top-left)
   const isPlayerTurn = (turn === "player") ||
                        (turn === "animating" && ball.byPlayer);
   ctx.textAlign = "left";
-  ctx.fillStyle = isPlayerTurn ? "#3498db" : w.boss.color;
+  ctx.fillStyle = isPlayerTurn ? "#3498db" : currentBoss().color;
   ctx.font = "bold 15px 'Courier New'";
-  ctx.fillText(isPlayerTurn ? "YOUR TURN" : w.boss.name + "'s TURN", 14, 28);
+  ctx.fillText(isPlayerTurn ? "YOUR TURN" : currentBoss().name + "'s TURN", 14, 28);
 
   // World label (top-right)
   ctx.textAlign = "right";
@@ -372,10 +448,10 @@ function drawMatch() {
 
   // Boss taunt while waiting
   if (turn === "bossWait") {
-    ctx.fillStyle = w.boss.color;
+    ctx.fillStyle = currentBoss().color;
     ctx.font = "italic 15px 'Courier New'";
     ctx.textAlign = "center";
-    ctx.fillText('"' + w.boss.taunt + '"', W / 2, H - 18);
+    ctx.fillText('"' + currentBoss().taunt + '"', W / 2, H - 18);
   }
 
   // Popup
@@ -555,7 +631,7 @@ function drawMatchEnd() {
 
     ctx.fillStyle = "#aaa";
     ctx.font = "14px 'Courier New'";
-    ctx.fillText("Score: You " + playerScore + " – " + bossScore + " " + world.boss.name, W / 2, 330);
+    ctx.fillText("Final boss: " + world.bosses[world.bosses.length - 1].name, W / 2, 330);
   } else {
     ctx.fillStyle = "#e74c3c";
     ctx.font = "bold 50px 'Courier New'";
@@ -567,7 +643,7 @@ function drawMatchEnd() {
 
     ctx.fillStyle = "#aaa";
     ctx.font = "14px 'Courier New'";
-    ctx.fillText("Score: You " + playerScore + " – " + bossScore + " " + world.boss.name, W / 2, 285);
+    ctx.fillText("Lost to: " + currentBoss().name + " (Boss " + (bossIndex + 1) + "/5)", W / 2, 285);
   }
 
   ctx.fillStyle = "#888";
