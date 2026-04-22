@@ -12,43 +12,43 @@ const WORLDS = [
   {
     id: 0, name: "The Gym", emoji: "🏀",
     bg: "#1a3a5c", floor: "#b5651d",
-    trophiesNeeded: 0, trophiesToNext: 1, pointsToWin: 5,
+    trophiesNeeded: 0, trophiesToNext: 1, pointsToWin: 5, trophyReward: 10,
     boss: { name: "Coach Brick", emoji: "😤", color: "#c0392b", size: 52, shotChance: 0.38, taunt: "Is that all you got?" },
   },
   {
     id: 1, name: "City Rooftop", emoji: "🏙️",
     bg: "#1c2833", floor: "#717d7e",
-    trophiesNeeded: 1000, trophiesToNext: 5000, pointsToWin: 7,
+    trophiesNeeded: 1000, trophiesToNext: 5000, pointsToWin: 7, trophyReward: 1,
     boss: { name: "Rooftop Rex", emoji: "😠", color: "#d35400", size: 60, shotChance: 0.52, taunt: "Get off my court!" },
   },
   {
     id: 2, name: "Outer Space", emoji: "🚀",
     bg: "#050510", floor: "#2c2c5a",
-    trophiesNeeded: 5000, trophiesToNext: 15000, pointsToWin: 9,
+    trophiesNeeded: 5000, trophiesToNext: 15000, pointsToWin: 9, trophyReward: 1,
     boss: { name: "Alien Slam", emoji: "👽", color: "#1abc9c", size: 68, shotChance: 0.65, taunt: "Earthlings can't ball!" },
   },
   {
     id: 3, name: "Volcano Court", emoji: "🌋",
     bg: "#2d0000", floor: "#7b241c",
-    trophiesNeeded: 15000, trophiesToNext: 20000, pointsToWin: 11,
+    trophiesNeeded: 15000, trophiesToNext: 20000, pointsToWin: 11, trophyReward: 1,
     boss: { name: "Lava King", emoji: "👹", color: "#e74c3c", size: 76, shotChance: 0.78, taunt: "You'll burn for this!" },
   },
   {
     id: 4, name: "Arctic Court", emoji: "❄️",
     bg: "#0a1628", floor: "#a8d8ea",
-    trophiesNeeded: 20000, trophiesToNext: 50000, pointsToWin: 13,
+    trophiesNeeded: 20000, trophiesToNext: 50000, pointsToWin: 13, trophyReward: 1,
     boss: { name: "Frost Giant", emoji: "🧊", color: "#74b9ff", size: 84, shotChance: 0.83, taunt: "You'll freeze before you score!" },
   },
   {
     id: 5, name: "Haunted Court", emoji: "👻",
     bg: "#0d0015", floor: "#2d1b4e",
-    trophiesNeeded: 50000, trophiesToNext: 100000, pointsToWin: 15,
+    trophiesNeeded: 50000, trophiesToNext: 100000, pointsToWin: 15, trophyReward: 1,
     boss: { name: "Ghost Guard", emoji: "💀", color: "#a29bfe", size: 90, shotChance: 0.88, taunt: "No one escapes my court!" },
   },
   {
     id: 6, name: "Dragon's Lair", emoji: "🐉",
     bg: "#1a0000", floor: "#4a0000",
-    trophiesNeeded: 100000, trophiesToNext: Infinity, pointsToWin: 17,
+    trophiesNeeded: 100000, trophiesToNext: Infinity, pointsToWin: 17, trophyReward: 1,
     boss: { name: "Dragon King", emoji: "🔥", color: "#ff7675", size: 96, shotChance: 0.93, taunt: "NONE shall defeat the Dragon King!" },
   },
 ];
@@ -195,7 +195,7 @@ function finishShot() {
   // Check for match end
   if (playerScore >= world.pointsToWin || bossScore >= world.pointsToWin) {
     matchWon = playerScore >= world.pointsToWin;
-    if (matchWon) trophies++;
+    if (matchWon) trophies += world.trophyReward;
     turn = "ending";
     setTimeout(() => { screen = "matchEnd"; }, 1400);
     return;
@@ -543,7 +543,7 @@ function drawMatchEnd() {
 
     ctx.fillStyle = "#ecf0f1";
     ctx.font = "22px 'Courier New'";
-    ctx.fillText("Trophy earned! You now have " + trophies + " 🏆", W / 2, 232);
+    ctx.fillText("+" + world.trophyReward + " trophies! Total: " + trophies + " 🏆", W / 2, 232);
 
     // Check what just got unlocked
     const justUnlocked = WORLDS.find(w => w.trophiesNeeded === trophies);
