@@ -18,37 +18,37 @@ const WORLDS = [
   {
     id: 1, name: "City Rooftop", emoji: "🏙️",
     bg: "#1c2833", floor: "#717d7e",
-    trophiesNeeded: 1, trophiesToNext: 3, pointsToWin: 7,
+    trophiesNeeded: 1000, trophiesToNext: 5000, pointsToWin: 7,
     boss: { name: "Rooftop Rex", emoji: "😠", color: "#d35400", size: 60, shotChance: 0.52, taunt: "Get off my court!" },
   },
   {
     id: 2, name: "Outer Space", emoji: "🚀",
     bg: "#050510", floor: "#2c2c5a",
-    trophiesNeeded: 3, trophiesToNext: 6, pointsToWin: 9,
+    trophiesNeeded: 5000, trophiesToNext: 15000, pointsToWin: 9,
     boss: { name: "Alien Slam", emoji: "👽", color: "#1abc9c", size: 68, shotChance: 0.65, taunt: "Earthlings can't ball!" },
   },
   {
     id: 3, name: "Volcano Court", emoji: "🌋",
     bg: "#2d0000", floor: "#7b241c",
-    trophiesNeeded: 6, trophiesToNext: 10, pointsToWin: 11,
+    trophiesNeeded: 15000, trophiesToNext: 20000, pointsToWin: 11,
     boss: { name: "Lava King", emoji: "👹", color: "#e74c3c", size: 76, shotChance: 0.78, taunt: "You'll burn for this!" },
   },
   {
     id: 4, name: "Arctic Court", emoji: "❄️",
     bg: "#0a1628", floor: "#a8d8ea",
-    trophiesNeeded: 10, trophiesToNext: 15, pointsToWin: 13,
+    trophiesNeeded: 20000, trophiesToNext: 50000, pointsToWin: 13,
     boss: { name: "Frost Giant", emoji: "🧊", color: "#74b9ff", size: 84, shotChance: 0.83, taunt: "You'll freeze before you score!" },
   },
   {
     id: 5, name: "Haunted Court", emoji: "👻",
     bg: "#0d0015", floor: "#2d1b4e",
-    trophiesNeeded: 15, trophiesToNext: 21, pointsToWin: 15,
+    trophiesNeeded: 50000, trophiesToNext: 100000, pointsToWin: 15,
     boss: { name: "Ghost Guard", emoji: "💀", color: "#a29bfe", size: 90, shotChance: 0.88, taunt: "No one escapes my court!" },
   },
   {
     id: 6, name: "Dragon's Lair", emoji: "🐉",
     bg: "#1a0000", floor: "#4a0000",
-    trophiesNeeded: 21, trophiesToNext: Infinity, pointsToWin: 17,
+    trophiesNeeded: 100000, trophiesToNext: Infinity, pointsToWin: 17,
     boss: { name: "Dragon King", emoji: "🔥", color: "#ff7675", size: 96, shotChance: 0.93, taunt: "NONE shall defeat the Dragon King!" },
   },
 ];
