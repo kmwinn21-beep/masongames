@@ -241,9 +241,10 @@ function finishShot() {
   // Player won this boss fight
   if (playerScore >= world.pointsToWin) {
     turn = "ending";
+    trophies += 10;
     if (bossIndex < world.bosses.length - 1) {
       // More bosses to fight — advance after a short pause
-      showPopup("Boss " + (bossIndex + 1) + " down! Next up...", "#2ecc71");
+      showPopup("Boss " + (bossIndex + 1) + " down! +10 🏆", "#2ecc71");
       setTimeout(() => {
         bossIndex++;
         playerScore  = 0;
@@ -255,7 +256,6 @@ function finishShot() {
     } else {
       // All 5 bosses beaten!
       matchWon = true;
-      trophies += world.trophyReward;
       setTimeout(() => { screen = "matchEnd"; }, 1600);
     }
     return;
@@ -619,7 +619,7 @@ function drawMatchEnd() {
 
     ctx.fillStyle = "#ecf0f1";
     ctx.font = "22px 'Courier New'";
-    ctx.fillText("+" + world.trophyReward + " trophies! Total: " + trophies + " 🏆", W / 2, 232);
+    ctx.fillText("+50 trophies total! You now have " + trophies + " 🏆", W / 2, 232);
 
     // Check what just got unlocked
     const justUnlocked = WORLDS.find(w => w.trophiesNeeded === trophies);
